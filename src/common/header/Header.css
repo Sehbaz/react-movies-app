@@ -1,0 +1,13 @@
+.header-container{
+   background-color: #212121;
+    min-height:7vh ;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+   justify-content: space-between;
+}
+.logo{
+    color:white;
+    transform: scale(1.3);
+}
