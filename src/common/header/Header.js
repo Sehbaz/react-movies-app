@@ -26,7 +26,14 @@ class Header extends Component {
           <TheatersOutlinedIcon className="logo" />
         </div>
         <div className="form">
-          <Button variant="outlined" onClick={this.openModalHandler}>
+          <Button
+            variant="outlined"
+            onClick={this.openModalHandler}
+            style={{
+              borderColor: "#37474f",
+              color: "37474f",
+            }}
+          >
             login
           </Button>
         </div>
