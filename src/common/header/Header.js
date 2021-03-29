@@ -8,11 +8,9 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 
-import { InputLabel, Input, TextField } from "@material-ui/core/";
+import { InputLabel, Input } from "@material-ui/core/";
 const customStyles = {
   content: {
-    border: "1px solid #37474f",
-    color: "#37474f",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -21,15 +19,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-const customIndicator = {
-  content: {
-    border: "1px solid #37474f",
-    color: "#37474f",
-  },
-  input: {
-    color: "red",
-  },
-};
+
 const TabContainer = (props) => {
   return (
     <Typography component="div" style={{ padding: 0 }}>
@@ -64,14 +54,7 @@ class Header extends Component {
           <TheatersOutlinedIcon className="logo" />
         </div>
         <div className="form">
-          <Button
-            variant="outlined"
-            onClick={this.openModalHandler}
-            style={{
-              borderColor: "#37474f",
-              color: "37474f",
-            }}
-          >
+          <Button color="inherit" onClick={this.openModalHandler}>
             login
           </Button>
         </div>
@@ -85,12 +68,13 @@ class Header extends Component {
           <Tabs
             value={this.state.value}
             onChange={this.tabChangeHandler}
-            TabIndicatorProps={{ style: { background: "#37474f" } }}
+            indicatorColor="primary"
+            textColor="primary"
           >
             <Tab label="login"></Tab>
             <Tab label="register" />
           </Tabs>
-          <TabContainer style={customIndicator}>
+          <TabContainer>
             <FormControl required>
               <InputLabel htmlFor="username">Username :</InputLabel>
               <Input id="username" type="text" />
