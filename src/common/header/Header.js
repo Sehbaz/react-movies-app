@@ -5,6 +5,38 @@ import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
 import Modal from "react-modal";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+
+import { InputLabel, Input, TextField } from "@material-ui/core/";
+const customStyles = {
+  content: {
+    border: "1px solid #37474f",
+    color: "#37474f",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+const customIndicator = {
+  content: {
+    border: "1px solid #37474f",
+    color: "#37474f",
+  },
+  input: {
+    color: "red",
+  },
+};
+const TabContainer = (props) => {
+  return (
+    <Typography component="div" style={{ padding: 0 }}>
+      {props.children}
+    </Typography>
+  );
+};
 
 class Header extends Component {
   constructor() {
@@ -26,11 +58,6 @@ class Header extends Component {
     this.setState({ value });
   };
   render() {
-    const styles = (theme) => ({
-      indicator: {
-        backgroundColor: "white",
-      },
-    });
     return (
       <div className="header-container">
         <div>
@@ -53,15 +80,27 @@ class Header extends Component {
           isOpen={this.state.modalIsOpen}
           contentLabel="login"
           onRequestClose={this.closeModelHandler}
+          style={customStyles}
         >
           <Tabs
             value={this.state.value}
             onChange={this.tabChangeHandler}
             TabIndicatorProps={{ style: { background: "#37474f" } }}
           >
-            <Tab label="login" />
+            <Tab label="login"></Tab>
             <Tab label="register" />
           </Tabs>
+          <TabContainer style={customIndicator}>
+            <FormControl required>
+              <InputLabel htmlFor="username">Username :</InputLabel>
+              <Input id="username" type="text" />
+            </FormControl>
+            <br />
+            <FormControl required>
+              <InputLabel htmlFor="password">Password :</InputLabel>
+              <Input id="password" type="password" />
+            </FormControl>
+          </TabContainer>
         </Modal>
       </div>
     );

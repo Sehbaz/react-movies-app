@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Home from "./screens/home/Home.js";
+import "fontsource-roboto";
 
 import reportWebVitals from "./reportWebVitals";
 
