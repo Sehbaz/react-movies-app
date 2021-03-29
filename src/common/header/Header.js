@@ -8,7 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 
-import { InputLabel, Input } from "@material-ui/core/";
+import { TextField } from "@material-ui/core/";
 const customStyles = {
   content: {
     top: "50%",
@@ -77,14 +77,24 @@ class Header extends Component {
           </Tabs>
           <TabContainer>
             <FormControl required>
-              <InputLabel htmlFor="username">Username :</InputLabel>
-              <Input id="username" type="text" />
+              <TextField
+                id="username"
+                label="username"
+                type="text"
+                variant="outlined"
+              />
             </FormControl>
             <br />
+            <br />
             <FormControl required>
-              <InputLabel htmlFor="password">Password :</InputLabel>
-              <Input id="password" type="password" />
+              <TextField
+                id="password"
+                label="password"
+                type="text"
+                variant="outlined"
+              />
             </FormControl>
+
             <br />
             <br />
             <Button variant="contained" color="primary">
