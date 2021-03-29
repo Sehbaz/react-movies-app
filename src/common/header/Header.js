@@ -37,8 +37,10 @@ class Header extends Component {
     this.state = {
       modalIsOpen: false,
       value: 0,
-      usernameRequired: "dispNone",
       username: "",
+      usernameRequired: "dispNone",
+      password: "",
+      passwordRequired: "dispNone",
     };
   }
   openModalHandler = () => {
@@ -47,9 +49,11 @@ class Header extends Component {
   closeModelHandler = () => {
     this.setState({
       modalIsOpen: false,
+      usernameRequired: "dispNone",
+      passwordRequired: "dispNone",
     });
   };
-  tabChangeHandler = (event, value) => {
+  tabChangeHandler = (value) => {
     this.setState({ value });
   };
   loginHandler = () => {
@@ -58,9 +62,17 @@ class Header extends Component {
     } else {
       this.setState({ usernameRequired: "dispNone" });
     }
+    if (this.state.password === "") {
+      this.setState({ passwordRequired: "dispBlock" });
+    } else {
+      this.setState({ passwordRequired: "dispNone" });
+    }
   };
   inputUsernameChangeHandler = (e) => {
     this.setState({ username: e.target.value });
+  };
+  inputPasswordChangeHandler = (e) => {
+    this.setState({ password: e.target.value });
   };
   render() {
     return (
@@ -95,7 +107,7 @@ class Header extends Component {
               <FormControl required>
                 <TextField
                   id="username"
-                  label="username"
+                  label="username *"
                   type="text"
                   variant="outlined"
                   username={this.state.username}
@@ -110,10 +122,15 @@ class Header extends Component {
               <FormControl required>
                 <TextField
                   id="password"
-                  label="password"
+                  label="password *"
                   type="text"
                   variant="outlined"
+                  password={this.state.password}
+                  onChange={this.inputPasswordChangeHandler}
                 />
+                <FormHelperText className={this.state.passwordRequired}>
+                  <span className="red">Required</span>
+                </FormHelperText>
               </FormControl>
 
               <br />
