@@ -7,8 +7,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
-
 import { TextField } from "@material-ui/core/";
+import PropTypes from "prop-types";
 const customStyles = {
   content: {
     top: "50%",
@@ -26,6 +26,9 @@ const TabContainer = (props) => {
       {props.children}
     </Typography>
   );
+};
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 class Header extends Component {
@@ -75,32 +78,34 @@ class Header extends Component {
             <Tab label="login"></Tab>
             <Tab label="register" />
           </Tabs>
-          <TabContainer>
-            <FormControl required>
-              <TextField
-                id="username"
-                label="username"
-                type="text"
-                variant="outlined"
-              />
-            </FormControl>
-            <br />
-            <br />
-            <FormControl required>
-              <TextField
-                id="password"
-                label="password"
-                type="text"
-                variant="outlined"
-              />
-            </FormControl>
+          {this.state.value === 0 && (
+            <TabContainer>
+              <FormControl required>
+                <TextField
+                  id="username"
+                  label="username"
+                  type="text"
+                  variant="outlined"
+                />
+              </FormControl>
+              <br />
+              <br />
+              <FormControl required>
+                <TextField
+                  id="password"
+                  label="password"
+                  type="text"
+                  variant="outlined"
+                />
+              </FormControl>
 
-            <br />
-            <br />
-            <Button variant="contained" color="primary">
-              login
-            </Button>
-          </TabContainer>
+              <br />
+              <br />
+              <Button variant="contained" color="primary">
+                login
+              </Button>
+            </TabContainer>
+          )}
         </Modal>
       </div>
     );
