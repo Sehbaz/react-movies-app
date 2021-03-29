@@ -63,6 +63,7 @@ class Header extends Component {
       lastnameRequired: "dispNone",
       contactRequired: "dispNone",
       emailRequired: "dispNone",
+      value: 0,
     });
   };
   tabChangeHandler = (event, value) => {
