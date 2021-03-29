@@ -7,7 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
-import { TextField } from "@material-ui/core/";
+import { TextField, FormHelperText } from "@material-ui/core/";
 import PropTypes from "prop-types";
 const customStyles = {
   content: {
@@ -37,6 +37,8 @@ class Header extends Component {
     this.state = {
       modalIsOpen: false,
       value: 0,
+      usernameRequired: "dispNone",
+      username: "",
     };
   }
   openModalHandler = () => {
@@ -49,6 +51,16 @@ class Header extends Component {
   };
   tabChangeHandler = (event, value) => {
     this.setState({ value });
+  };
+  loginHandler = () => {
+    if (this.state.username === "") {
+      this.setState({ usernameRequired: "dispBlock" });
+    } else {
+      this.setState({ usernameRequired: "dispNone" });
+    }
+  };
+  inputUsernameChangeHandler = (e) => {
+    this.setState({ username: e.target.value });
   };
   render() {
     return (
@@ -86,7 +98,12 @@ class Header extends Component {
                   label="username"
                   type="text"
                   variant="outlined"
+                  username={this.state.username}
+                  onChange={this.inputUsernameChangeHandler}
                 />
+                <FormHelperText className={this.state.usernameRequired}>
+                  <span className="red">Required</span>
+                </FormHelperText>
               </FormControl>
               <br />
               <br />
@@ -101,7 +118,11 @@ class Header extends Component {
 
               <br />
               <br />
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.loginHandler}
+              >
                 login
               </Button>
             </TabContainer>
