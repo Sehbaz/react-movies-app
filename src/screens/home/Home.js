@@ -56,6 +56,10 @@ const styles = (theme) => ({
   center: {
     textAlign: "center",
   },
+  titleBar: {
+    background:
+      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  },
 });
 
 class Home extends Component {
@@ -105,6 +109,7 @@ class Home extends Component {
                   <GridListTileBar
                     title={movie.title}
                     classes={{
+                      root: classes.titleBar,
                       title: classes.title,
                     }}
                   />
@@ -159,6 +164,7 @@ class Home extends Component {
               <GridListTileBar
                 title={movie.title}
                 classes={{
+                  root: classes.titleBar,
                   title: classes.title,
                 }}
               />
