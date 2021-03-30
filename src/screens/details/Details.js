@@ -3,11 +3,25 @@ import Header from "../../common/header/Header";
 import moviesData from "../../common/movieData";
 import { Typography } from "@material-ui/core";
 import "../details/Details.css";
+import { withStyles } from "@material-ui/core/styles";
 import Home from "../../screens/home/Home";
 import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import YouTube from "react-youtube";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+const styles = (theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+  titleBar: {
+    background:
+      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  },
+});
 class Details extends Component {
   constructor() {
     super();
@@ -30,6 +44,9 @@ class Details extends Component {
         autoplay: 1,
       },
     };
+    let artist = this.state.movie.artists;
+    const { classes } = this.props;
+
     return (
       <div className="details">
         <Header />
@@ -84,7 +101,7 @@ class Details extends Component {
               </Typography>
             </div>
             <br />
-            <div className="trailer-container">
+            <div className="trailer-container roundShadow">
               <span className="bold">Trailer : </span>
               <YouTube
                 videoId={movie.trailer_url.split("?v=")[1]}
@@ -93,10 +110,35 @@ class Details extends Component {
               ></YouTube>
             </div>
           </div>
-          <div className="rightDetails"></div>
+          <div className="rightDetails">
+            {" "}
+            <div>
+              <Typography>
+                <span className="bold">Artist : </span>
+                <span>{movie.storyline}</span>
+              </Typography>
+            </div>
+            <div>
+              {" "}
+              <GridList cellHeight={170} cols={2}>
+                {artist.map((artist) => (
+                  <GridListTile key={artist.id}>
+                    <img src={artist.profile_url} alt={artist.first_name}></img>
+                    <GridListTileBar
+                      classes={{
+                        root: classes.titleBar,
+                        title: classes.title,
+                      }}
+                      title={artist.first_name + " " + artist.last_name}
+                    />
+                  </GridListTile>
+                ))}
+              </GridList>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
-export default Details;
+export default withStyles(styles)(Details);
