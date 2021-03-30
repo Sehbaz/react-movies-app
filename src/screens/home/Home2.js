@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./Home.css";
-
-import Button from "@material-ui/core/Button";
 import Header from "../../common/header/Header.js";
 import { withStyles } from "@material-ui/core/styles";
 import moviesData from "../../common/movieData";
-
+import genreData from "../../common/genres";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -67,7 +65,7 @@ const styles = (theme) => ({
   },
 });
 
-class Home extends Component {
+class Home2 extends Component {
   constructor(props) {
     super(props);
     this.state = { windowWidth: window.innerWidth, moviesName: "", genres: [] };
@@ -144,7 +142,7 @@ class Home extends Component {
                     <TextField
                       fullWidth
                       id="moviename"
-                      label="enter movie name "
+                      label="moviename "
                       type="text"
                       variant="outlined"
                       onChange={this.movieNameChangeHandler}
@@ -152,9 +150,35 @@ class Home extends Component {
                   </Typography>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                  <Button variant="contained" color="primary" size="large">
-                    APPLY
-                  </Button>
+                  <InputLabel id="select-multiple-checkbox">Genre</InputLabel>
+                  <Select
+                    multiple
+                    input={<Input id="select-multiple-checkbox-genre  " />}
+                    renderValue={(selected) => selected.join(",")}
+                    value={this.state.genres}
+                    onChange={this.genreSelectHandler}
+                  >
+                    {genreData.map((genre) => (
+                      <MenuItem key={genre.id} value={genre.value}>
+                        <Checkbox
+                          checked={this.state.genres.indexOf(genre.name) > -1}
+                        />
+                        <ListItemText primary={genre.name} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <Typography className={classes.title1}>
+                    <TextField
+                      fullWidth
+                      id="moviename"
+                      label="moviename "
+                      type="text"
+                      variant="outlined"
+                      onChange={this.movieNameChangeHandler}
+                    />
+                  </Typography>
                 </FormControl>
               </CardContent>
             </Card>
@@ -164,4 +188,4 @@ class Home extends Component {
     );
   }
 }
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Home2);

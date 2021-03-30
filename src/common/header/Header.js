@@ -126,12 +126,16 @@ class Header extends Component {
   inputContactChangeHandler = (e) => {
     this.setState({ contact: e.target.value });
   };
+  movieNameChangeHandler = (event) => {
+    this.setState({ moviesName: event.target.value });
+  };
   render() {
     return (
       <div className="header-container">
         <div>
           <TheatersOutlinedIcon className="logo" />
         </div>
+
         <div className="form">
           <Button color="inherit" onClick={this.openModalHandler}>
             login

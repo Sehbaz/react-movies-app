@@ -7,9 +7,8 @@ import "fontsource-roboto";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
+  <Home />,
+
   document.getElementById("root")
 );
 
