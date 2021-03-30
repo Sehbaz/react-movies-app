@@ -1,15 +1,16 @@
 .details {
     text-align: left;
   }
-  
+  .movie-title{
+      font-size: 3rem;
+  }
   .leftDetails {
     width: 20%;
     text-align: center;
   
   }
   .leftDetails>img{
-     
-      border-radius: 1em;
+      border-radius: 0.5em;
       box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
               0 2px 2px rgba(0,0,0,0.12), 
               0 4px 4px rgba(0,0,0,0.12), 
@@ -68,6 +69,8 @@
   
   .flex-containerDetails {
     display: flex; margin-top: 6vh;
+    justify-content: center;
+    align-items: center;
   }
   
   .flex-containerDetails>div {
@@ -84,7 +87,8 @@
       text-align: center;
     }
     .middleDetails {
-      width: 90%;
+      width: 80%;
+      padding: 1rem;
     }
     .rightDetails {
       width: 100%;
@@ -92,6 +96,10 @@
     .flex-containerDetails {
       flex-direction: column;
     }
+    .flex-containerDetails>div {
+        margin: 0px 0px;
+       
+      }
     .paddingRight {
       margin-right: 32px;
     }
