@@ -5,14 +5,14 @@ import Button from "@material-ui/core/Button";
 import Header from "../../common/header/Header.js";
 import { withStyles } from "@material-ui/core/styles";
 import moviesData from "../../common/movieData";
-
+import ReactDOM from "react-dom";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import FormControl from "@material-ui/core/FormControl";
-
+import Details from "../details/Details";
 import { Typography, TextField } from "@material-ui/core";
 
 const styles = (theme) => ({
@@ -70,6 +70,12 @@ class Home extends Component {
   genreSelectHandler = (event) => {
     this.setState({ genres: event.target.value });
   };
+  movieClickHandler = (movieId) => {
+    ReactDOM.render(
+      <Details movieId={movieId} />,
+      document.getElementById("root")
+    );
+  };
   render() {
     const { classes } = this.props;
     let colums = this.state.windowWidth >= 600 ? 5.5 : 2.5;
@@ -91,7 +97,10 @@ class Home extends Component {
               className={classes.gridListNewRelease}
             >
               {moviesData.map((movie) => (
-                <GridListTile key={movie.id}>
+                <GridListTile
+                  key={movie.id}
+                  onClick={() => this.movieClickHandler(movie.id)}
+                >
                   <img src={movie.poster_url} alt={movie.title}></img>
                   <GridListTileBar
                     title={movie.title}
