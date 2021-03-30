@@ -151,7 +151,10 @@ class Home extends Component {
           className={classes.gridListUpcomingMovies}
         >
           {moviesData.map((movie) => (
-            <GridListTile key={movie.id}>
+            <GridListTile
+              key={movie.id}
+              onClick={() => this.movieClickHandler(movie.id)}
+            >
               <img src={movie.poster_url} alt={movie.title}></img>
               <GridListTileBar
                 title={movie.title}
