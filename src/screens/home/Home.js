@@ -12,17 +12,8 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import {
-  Typography,
-  TextField,
-  Checkbox,
-  ListItemText,
-} from "@material-ui/core";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import genres from "../../common/genres";
+
+import { Typography, TextField } from "@material-ui/core";
 
 const styles = (theme) => ({
   root: {
@@ -82,30 +73,11 @@ class Home extends Component {
   render() {
     const { classes } = this.props;
     let colums = this.state.windowWidth >= 600 ? 5.5 : 2.5;
+    let columsHeight = this.state.windowWidth >= 600 ? 350 : 250;
     return (
       <div>
         <Header />
-        <div className={classes.upcomingMoviesHeading}>
-          <span>Upcoming Movies</span>
-        </div>
-        <GridList
-          className="mygrid"
-          cellHeight={350}
-          cols={colums}
-          className={classes.gridListUpcomingMovies}
-        >
-          {moviesData.map((movie) => (
-            <GridListTile key={movie.id}>
-              <img src={movie.poster_url} alt={movie.title}></img>
-              <GridListTileBar
-                title={movie.title}
-                classes={{
-                  title: classes.title,
-                }}
-              />
-            </GridListTile>
-          ))}
-        </GridList>
+
         <div className={classes.upcomingMoviesHeading}>
           <span>New Released Movies</span>
         </div>
@@ -113,8 +85,8 @@ class Home extends Component {
           <div className="left">
             <GridList
               className="mygrid"
-              cellHeight={350}
-              cols={4}
+              cellHeight={columsHeight}
+              cols={colums - 1}
               spacing={20}
               className={classes.gridListNewRelease}
             >
@@ -160,6 +132,27 @@ class Home extends Component {
             </Card>
           </div>
         </div>
+        <div className={classes.upcomingMoviesHeading}>
+          <span>Upcoming Movies</span>
+        </div>
+        <GridList
+          className="mygrid"
+          cellHeight={350}
+          cols={colums}
+          className={classes.gridListUpcomingMovies}
+        >
+          {moviesData.map((movie) => (
+            <GridListTile key={movie.id}>
+              <img src={movie.poster_url} alt={movie.title}></img>
+              <GridListTileBar
+                title={movie.title}
+                classes={{
+                  title: classes.title,
+                }}
+              />
+            </GridListTile>
+          ))}
+        </GridList>
       </div>
     );
   }
