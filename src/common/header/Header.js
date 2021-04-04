@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Header.css";
+import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
 import Modal from "react-modal";
@@ -9,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import { TextField, FormHelperText } from "@material-ui/core/";
 import PropTypes from "prop-types";
+import BookShow from "../../screens/bookShow/BookShow";
+import Home from "../../screens/home/Home";
 const customStyles = {
   content: {
     top: "50%",
@@ -129,18 +132,40 @@ class Header extends Component {
   movieNameChangeHandler = (event) => {
     this.setState({ moviesName: event.target.value });
   };
+  bookShowHander = () => {
+    ReactDOM.render(<BookShow />, document.getElementById("root"));
+  };
+  backtohomeHandler = () => {
+    ReactDOM.render(<Home />, document.getElementById("root"));
+  };
   render() {
     return (
       <div className="header-container">
         <div>
-          <TheatersOutlinedIcon className="logo" />
+          <TheatersOutlinedIcon
+            className="logo"
+            onClick={this.backtohomeHandler}
+          />
         </div>
-
+        {/*}
         <div className="form">
-          <Button color="inherit" onClick={this.openModalHandler}>
+          {this.props.bookShowButton === "true" ? (
+            <Button color="inherit" onClick={this.bookShowHander}>
+              BookShow
+            </Button>
+          ) : (
+            ""
+          )}
+
+          <Button
+            varient="outlined"
+            color="inherit"
+            onClick={this.openModalHandler}
+          >
             login
           </Button>
         </div>
+          */}
         <Modal
           ariaHideApp={false}
           isOpen={this.state.modalIsOpen}

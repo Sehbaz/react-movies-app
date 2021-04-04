@@ -12,6 +12,7 @@ import YouTube from "react-youtube";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -37,19 +38,20 @@ class Details extends Component {
   backtohomeHandler = () => {
     ReactDOM.render(<Home />, document.getElementById("root"));
   };
+
   render() {
     let movie = this.state.movie;
+    // let artist = this.state.movie.artists;
+    const { classes } = this.props;
     const opts = {
       playerVars: {
         autoplay: 1,
       },
     };
-    let artist = this.state.movie.artists;
-    const { classes } = this.props;
 
     return (
       <div className="details">
-        <Header />
+        <Header bookShowButton="true" />
         <div className="back">
           <Button
             variant="outlined"
@@ -70,7 +72,7 @@ class Details extends Component {
             <div>
               <Typography>
                 <span className="bold">Genre : </span>
-                {movie.genres.join(",")}
+                {movie.genres.join(", ")}
               </Typography>
             </div>
             <div>
@@ -121,7 +123,7 @@ class Details extends Component {
             <div>
               {" "}
               <GridList cellHeight={170} cols={2}>
-                {artist.map((artist) => (
+                {movie.artists.map((artist) => (
                   <GridListTile key={artist.id}>
                     <img src={artist.profile_url} alt={artist.first_name}></img>
                     <GridListTileBar
