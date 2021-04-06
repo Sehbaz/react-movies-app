@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Header from "../../common/header/Header.js";
 import { withStyles } from "@material-ui/core/styles";
 import moviesData from "../../common/movieData";
-import ReactDOM from "react-dom";
+
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -71,10 +71,7 @@ class Home extends Component {
     this.setState({ genres: event.target.value });
   };
   movieClickHandler = (movieId) => {
-    ReactDOM.render(
-      <Details movieId={movieId} />,
-      document.getElementById("root")
-    );
+    this.props.history.push("/details/" + movieId);
   };
   render() {
     const { classes } = this.props;

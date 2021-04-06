@@ -4,14 +4,13 @@ import moviesData from "../../common/movieData";
 import { Typography } from "@material-ui/core";
 import "../details/Details.css";
 import { withStyles } from "@material-ui/core/styles";
-import Home from "../../screens/home/Home";
-import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import YouTube from "react-youtube";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
+import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -26,21 +25,22 @@ const styles = (theme) => ({
 class Details extends Component {
   constructor() {
     super();
-    this.state = { movie: {} };
+    this.state = {
+      movie: {},
+    };
   }
   componentWillMount() {
     let currentState = this.state;
+    console.log("props" + this.props);
     currentState.movie = moviesData.filter((mov) => {
-      return mov.id === this.props.movieId;
+      return mov.id === this.props.match.params.id;
     })[0];
-    this.setState({ currentState });
+    console.log(currentState.movie);
   }
-  backtohomeHandler = () => {
-    ReactDOM.render(<Home />, document.getElementById("root"));
-  };
 
   render() {
     let movie = this.state.movie;
+
     // let artist = this.state.movie.artists;
     const { classes } = this.props;
     const opts = {
@@ -51,16 +51,17 @@ class Details extends Component {
 
     return (
       <div className="details">
-        <Header bookShowButton="true" />
+        <Header id={this.props.match.params.id} showBookShowButton="true" />
         <div className="back">
           <Button
             variant="outlined"
             color="default"
             startIcon={<ArrowBackIcon />}
           >
-            <Typography onClick={this.backtohomeHandler}>
-              Back to home
-            </Typography>
+            <Link to="/" className="link-tag">
+              {" "}
+              Back to Home
+            </Link>
           </Button>
         </div>
         <div className="flex-containerDetails">

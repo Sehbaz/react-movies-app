@@ -1,6 +1,10 @@
 .details {
     text-align: left;
   }
+  .link-tag{
+    text-decoration: none;
+    color: black;
+  }
   .movie-title{
       font-size: 3rem;
   }

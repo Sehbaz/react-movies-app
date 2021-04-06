@@ -13,8 +13,10 @@
     "react-compose": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-modal": "^3.12.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-youtube": "^7.13.1",
+    "save": "^2.4.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
